@@ -1,7 +1,9 @@
 * {
   background-color: black;
   color: white;
+  font-family: "Kode Mono", monospace;
 }
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
 }
