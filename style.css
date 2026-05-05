@@ -1,3 +1,12 @@
+:root {
+  --layout-pg-padding: 0.75rem;
+  --layout-pg-content-max: 60rem;
+  --layout-pg-content: min(
+    100% - var(--layout-pg-padding) * 2,
+    var(--layout-pg-content-max)
+  );
+}
+
 * {
   background-color: black;
   color: white;
@@ -7,6 +16,32 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
 }
+.layout-page-grid {
+  display: grid;
+  grid-template-columns:
+    [full-start]
+    minmax(var(--layout-pg-padding), 1fr)
+    [content-start]
+    var(--layout-pg-content)
+    [content-end]
+    minmax(var(--layout-pg-padding), 1fr)
+    [full-end];
+  grid-template-rows:
+    [content-start]
+    1fr
+    [content-end];
+}
+.layout-page-grid > :not(.full-width),
+.full-width > :not(.full-width) {
+  grid-column: content;
+  grid-row: content;
+}
+.layout-page-grid > .full-width {
+  grid-column: full;
+  display: grid;
+  grid-template-columns: inherit;
+}
+
 .youtube-embed {
   display: flex;
   justify-content: center;
